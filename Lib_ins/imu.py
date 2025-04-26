@@ -1,7 +1,7 @@
 import pandas as pd
 import cond_iniciales as cd
 
-
+########
 class accelerometer():
     def __init__(self,data_path):
         self.t_f = []
