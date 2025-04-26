@@ -1,0 +1,44 @@
+# MATRIZ DE COSENOS DIRECTORES
+
+#  DCM = [ q0^2 + q1^2 - q2^2 - q3^2, 2*(q1*q2 - q0*q3), 2*(q1*q3 + q0*q2);
+#          2*(q1*q2 + q0*q3), q0^2 - q1^2 + q2^2 - q3^2, 2*(q2*q3 - q0*q1);
+#          2*(q1*q3 - q0*q2), 2*(q2*q3 + q0*q1), q0^2 - q1^2 - q2^2 + q3^2
+#        ];
+
+# CONVERSIÓN DE CUATERNIÓN A ÁNGULOS DE TAIT-BRYAN (3-2-1)
+
+# psi = atan2(2*(q1*q2 + q0*q3), q0^2 + q1^2 - q2^2 - q3^2);      % Yaw
+# theta = - asin(2*(q1*q3 - q0*q2));                              % Pitch
+# phi = atan2(2*(q2*q3 + q0*q1), q0^2 - q1^2 - q2^2 + q3^2);      % Roll
+
+
+# CONVERSIÓN DE ÁNGULOS A CUATERNIÓN
+# psi2 = psi / 2; theta2 = theta / 2; phi2 = phi / 2;
+
+# q0 = cos(psi2) * cos(theta2) * cos(phi2) + sin(psi2) * sin(theta2) * sin(phi2);
+# q1 = cos(psi2) * cos(theta2) * sin(phi2) - sin(psi2) * sin(theta2) * cos(phi2);
+# q2 = cos(psi2) * sin(theta2) * cos(phi2) + sin(psi2) * cos(theta2) * sin(phi2);
+# q3 = sin(psi2) * cos(theta2) * cos(phi2) - cos(psi2) * sin(theta2) * sin(phi2);
+
+# DERIVADA TEMPORAL DEL CUATERNIÓN ¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿
+# Omega_Matrix =    [0,    -we_b(1), -we_b(2), -we_b(3);...
+#                    we_b(1),  0,      we_b(3), -we_b(2);...
+#                    we_b(2), -we_b(3),   0,     we_b(1);...
+#                    we_b(3),  we_b(2), -we_b(1),     0 ];
+# dq_dt = 0.5 * Omega_Matrix * [q0, q1, q2, q3];
+
+# MATRIZ  DE ECECF A NED
+#     Cecef_ned = [-sin(lat0) * cos(long0), -sin(long0), -cos(lat0) * cos(long0);
+#                  -sin(lat0) * sin(long0),  cos(long0), -cos(lat0) * sin(long0);
+#                  cos(lat0),            0,       -sin(lat0)];
+
+# MATRIZ DE PASO DE ESFÉRICAS A CARTESIANAS
+# Resf2cart = [cos(lambda)*cos(phi), -cos(lambda)*sin(phi), -sin(lambda);
+#               sin(lambda)*cos(phi), -sin(lambda)*sin(phi),  cos(lambda);
+#               sin(phi),              cos(phi),              0];
+
+
+# EXPRESIONES DE PASO DE ESFÉRICAS A CARTESIANAS ¿¿¿¿¿¿¿¿¿
+# r = sqrt(xe^2 + ye^2 + ze^2);  % Radio geocéntrico [km]
+# theta = asin(ze / r);          % Latitud [rad]
+# lambda = atan2(ye, xe);        % Longitud [rad]
