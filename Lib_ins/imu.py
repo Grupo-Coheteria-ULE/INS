@@ -3,6 +3,7 @@ import cond_iniciales as cd
 import numpy as np
 
 # Hay que cambiar el trato de arrays y hacerlo con numpy
+# Acabar libreria de mates
 
 class accelerometer():
     def __init__(self,data_path):
