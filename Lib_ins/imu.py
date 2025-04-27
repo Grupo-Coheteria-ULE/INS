@@ -2,8 +2,8 @@ import pandas as pd
 import cond_iniciales as cd
 import numpy as np
 
-# Hay que cambiar el trato de arrays y hacerlo con numpy
 
+# Hay que cambiar el trato de arrays y hacerlo con numpy
 class accelerometer():
     def __init__(self,data_path):
         self.t_f = []
