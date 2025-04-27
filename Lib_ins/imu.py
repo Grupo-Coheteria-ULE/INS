@@ -1,6 +1,6 @@
 import pandas as pd
 import cond_iniciales as cd
-
+import numpy as np
 
 class accelerometer():
     def __init__(self,data_path):
