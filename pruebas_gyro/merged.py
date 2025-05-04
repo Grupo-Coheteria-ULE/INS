@@ -32,9 +32,16 @@ else:
 
 
 w_b = [df_w_b[0][i],df_w_b[1][i],df_w_b[2][i]]
+
+print(w_b)
 print(q[i])
 
-q = gi.calc_quat(w_b,q[i])
+M_omega =gi.calc_Omega(w_b)
+dquat = gi.calc_dquat(w_b,q[i])
+quat = gi.calc_quat(w_b,q[i])
+DMC = gi.calc_DMC_be(w_b,q[i])
 
-print(w_b[1])
-print(q)
+print(M_omega)
+print(dquat)
+print(quat)
+print(DMC)
